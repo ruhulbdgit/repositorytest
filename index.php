@@ -26,6 +26,7 @@
   </div>
   <div id="header_area">
     <div class="container">
+      <p>this is p tag</p>
       <div class="row">
         <div class="col-md-9">
           <?php the_content(); ?>
