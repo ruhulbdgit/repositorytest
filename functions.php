@@ -32,11 +32,13 @@ add_action( 'widgets_init', 'rone_theme_slug_widgets_init' );
 
 register_nav_menu( 'main_menu', __('Main Menu', 'rone') );
 
-// Walker Menu Properties
-function rone_nav_description( $item_output, $item, $args){
-  if( !empty ($item->description)){
-    $item_output = str_replace($args->link_after . '</a>', '<span class="walker_nav">' . $item->description . '</span>' . $args->link_after . '</a>', $item_output);
-  }
-  return $item_output;
+if ( ! function_exists( 'mytheme_register_nav_menu' ) ) {
+
+	function mytheme_register_nav_menu(){
+		register_nav_menus( array(
+	    	'primary_menu' => __( 'Primary Menu', 'text_domain' ),
+	    	'footer_menu'  => __( 'Footer Menu', 'text_domain' ),
+		) );
+	}
+	add_action( 'after_setup_theme', 'mytheme_register_nav_menu', 0 );
 }
-add_filter('walker_nav_menu_start_el', 'rone_nav_description', 10, 3);
